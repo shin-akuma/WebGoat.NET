@@ -53,7 +53,10 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         void LoadComments()
         {
             string id = Request["productNumber"];
-            if (id == null) id = "S18_2795"; //this month's special    
+            if (id == null) id = "S18_2795"; //this month's special
+            // Validate productNumber: only alphanumeric, underscore, and hyphen allowed
+            if (!System.Text.RegularExpressions.Regex.IsMatch(id, @"^[A-Za-z0-9_\-]+$"))
+                id = "S18_2795";
             DataSet ds = du.GetProductDetails(id);
             string output = string.Empty;
             string comments = string.Empty;
