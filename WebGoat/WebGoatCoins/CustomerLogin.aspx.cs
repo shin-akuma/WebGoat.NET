@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Web.Security;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,26 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             }
         }
 
+        private static readonly Regex EmailRegex = new Regex(
+            @"^[^@\s]{1,64}@[^@\s]+\.[^@\s]+$",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         protected void ButtonLogOn_Click(object sender, EventArgs e)
         {
-            string email = txtUserName.Text;
+            string email = txtUserName.Text.Trim();
             string pwd = txtPassword.Text;
 
-            log.Info("User " + email + " attempted to log in with password " + pwd);
+            // Validate email format before processing
+            if (!EmailRegex.IsMatch(email))
+            {
+                labelError.Text = "Please enter a valid email address.";
+                PanelError.Visible = true;
+                return;
+            }
+
+            // Sanitize email for logging to prevent log injection
+            string safeEmail = email.Replace("\r", "").Replace("\n", "");
+            log.Info("User " + safeEmail + " attempted to log in.");
 
             if (!du.IsValidCustomerLogin(email, pwd))
             {
