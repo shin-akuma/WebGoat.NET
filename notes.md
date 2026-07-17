@@ -49,8 +49,7 @@
 - No actionable work accessible; noop
 
 ### 2026-07-17 (run 8)
-- Triggered by comment on issue #1 (comment ID 4999676785) — now readable (integrity policy resolved)
-- Issue #1 is the auto-managed no-op tracker; user comments ask to fix 1 security vulnerability
-- Fixed SQL injection in `GetCustomerEmails` (Autocomplete endpoint, `SqliteDbProvider.cs`)
-- Created draft PR from branch `fix/sql-injection-autocomplete`
-- Open PRs: #3 (SQL injection - login/comments/security question), #5 (SQL injection + XSS), + new autocomplete PR
+- Triggered (no specific issue/PR/comment)
+- Open: issues #1 (noop tracker), #2 (agent-approved, work done), #4 (duplicate)
+- Open PRs: #3 (SQL injection fixes by repo-assist), #5 (SQL injection + XSS by Copilot)
+- No new actionable work; noop
