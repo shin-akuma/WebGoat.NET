@@ -29,4 +29,11 @@
   1. IsValidCustomerLogin — parameterized email + password
   2. AddComment — parameterized productCode, email, comment
   3. GetSecurityQuestionAndAnswer — parameterized email
-- Created draft PR from branch fix/sql-injection-parameterized-queries
+- Created draft PR from branch fix/sql-injection-parameterized-queries (PR #3)
+
+### 2026-07-17 (run 5)
+- Triggered by comment on issue #1 (comment ID 4999202204, still filtered)
+- Found duplicate issue #4 ("Find and fix 3 deliberate security vulnerabilities")
+- Labeled issue #4 as `duplicate`, commented pointing to PR #3 and PR #5
+- PR #5 (by Copilot) also fixes SQL injection + stored XSS + reflected XSS
+- Open PRs: #3 (SQL injection only), #5 (SQL injection + XSS)
