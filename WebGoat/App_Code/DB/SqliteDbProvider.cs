@@ -71,12 +71,13 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             string encoded_password = Encoder.Encode(password);
             
             //check email/password
-            string sql = "select * from CustomerLogin where email = '" + email + "' and password = '" + 
-                         encoded_password + "';";
+            string sql = "select * from CustomerLogin where email = @email and password = @password;";
                         
             using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, connection);
+                da.SelectCommand.Parameters.AddWithValue("@email", email);
+                da.SelectCommand.Parameters.AddWithValue("@password", encoded_password);
             
                 //TODO: User reader instead (for all calls)
                 DataSet ds = new DataSet();
@@ -234,7 +235,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
         public string AddComment(string productCode, string email, string comment)
         {
-            string sql = "insert into Comments(productCode, email, comment) values ('" + productCode + "','" + email + "','" + comment + "');";
+            string sql = "insert into Comments(productCode, email, comment) values (@productCode, @email, @comment);";
             string output = null;
             
             try
@@ -243,6 +244,9 @@ namespace OWASP.WebGoat.NET.App_Code.DB
                 using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
                 {
                     SQLiteCommand command = new SQLiteCommand(sql, connection);
+                    command.Parameters.AddWithValue("@productCode", productCode);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@comment", comment);
                     command.ExecuteNonQuery();
                 }
             }
@@ -282,7 +286,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         public string[] GetSecurityQuestionAndAnswer(string email)
         {
             string sql = "select SecurityQuestions.question_text, CustomerLogin.answer from CustomerLogin, " + 
-                "SecurityQuestions where CustomerLogin.email = '" + email + "' and CustomerLogin.question_id = " +
+                "SecurityQuestions where CustomerLogin.email = @email and CustomerLogin.question_id = " +
                 "SecurityQuestions.question_id;";
                 
             string[] qAndA = new string[2];
@@ -290,6 +294,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, connection);
+                da.SelectCommand.Parameters.AddWithValue("@email", email);
                 
                 DataSet ds = new DataSet();
                 da.Fill(ds);
