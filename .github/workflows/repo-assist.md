@@ -14,7 +14,8 @@ description: |
   Always polite, constructive, and mindful of the project's goals.
 
 on:
-  schedule: every 12h
+  # schedule disabled to save tokens (re-enable: uncomment)
+  # schedule: every 12h
   workflow_dispatch:
     inputs:
       command:
@@ -170,7 +171,7 @@ steps:
           json.dump(result, f, indent=2)
       EOF
 
-source: shin-akuma/xero-agentic-workflows@e4b9cd34d8ccd6239363bf7704bffa6f0607a760
+source: shin-akuma/xero-agentic-workflows@b695d66da0f3aac563c36e452d7fad5e8673dc80
 ---
 
 # Repo Assist

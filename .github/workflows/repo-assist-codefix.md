@@ -1,6 +1,7 @@
 ---
 on:
-  schedule: weekly
+  # schedule disabled to save tokens (re-enable: uncomment)
+  # schedule: weekly
   slash_command:
     name: repo-assist-fix
   reaction: "eyes"
@@ -23,7 +24,7 @@ tools:
   bash: true
   repo-memory: true
   web-fetch:
-source: shin-akuma/xero-agentic-workflows@e4b9cd34d8ccd6239363bf7704bffa6f0607a760
+source: shin-akuma/xero-agentic-workflows@b695d66da0f3aac563c36e452d7fad5e8673dc80
 ---
 
 # Repo Assist — Code Fix
