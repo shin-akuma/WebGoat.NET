@@ -53,3 +53,9 @@
 - Open: issues #1 (noop tracker), #2 (agent-approved, work done), #4 (duplicate)
 - Open PRs: #3 (SQL injection fixes by repo-assist), #5 (SQL injection + XSS by Copilot)
 - No new actionable work; noop
+
+### 2026-07-17 (run 9)
+- Triggered by issue #7: "Add input validation to this application"
+- Added email format validation + log injection fix in CustomerLogin.aspx.cs
+- Created draft PR from branch fix/email-input-validation (closes #7)
+- Also: PR #6 exists from prior run (SQL injection in Autocomplete)
