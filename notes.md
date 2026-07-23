@@ -59,3 +59,9 @@
 - Added email format validation + log injection fix in CustomerLogin.aspx.cs
 - Created draft PR from branch fix/email-input-validation (closes #7)
 - Also: PR #6 exists from prior run (SQL injection in Autocomplete)
+
+### 2026-07-23 (run - command mode Task 5)
+- Command: Apply 1 security improvement to the codebase
+- Changed httpOnlyCookies from "false" to "true" in WebGoat/Web.config
+- Created draft PR on branch repo-assist/improve-httponly-cookies
+- Improvement: enables HttpOnly flag on cookies, mitigating XSS-based session hijacking
